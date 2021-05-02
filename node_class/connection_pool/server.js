@@ -6,9 +6,21 @@ const mysql = require('./dbconn.js');
 app.get('/', (req, res)=>{
     mysql((err, connection)=>{
         if(!err){
+            
+            
+            
             connection.query('select * from board',(error, results)=>{
-                console.log(results);
+                connection.release();
+                if(error)console.log(error);
+                
+                else{
+                    console.log(results);
+                    res.send('hi')
+                }
+                
             })
+        }else{
+            console.log('connection error', err)
         }
     })
 })
