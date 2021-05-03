@@ -1,4 +1,4 @@
-const { removeTicks } = require("sequelize/types/lib/utils");
+
 
 document.querySelectorAll('#user-list tr').forEach((el)=>{
     el.addEventListener('click', function(){
@@ -48,7 +48,7 @@ async function getComment(id){
         comments.map(function (comment){
             const row = document.createElement('tr');
             let td = document.vreateElement('td');
-            td.textContent = commnet.id;
+            td.textContent = comment.id;
             row.appendChild(td);
             td = document.createElement('td');
             td.textContent = comment.User.name;
@@ -133,5 +133,5 @@ document.getElementById('comment-form').addEventListener('submit', async (e) =>{
         console.error(err);
     }
     e.target.userid.value = '';
-    e.target.commnet.value = '';
+    e.target.comment.value = '';
 });

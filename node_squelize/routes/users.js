@@ -8,14 +8,13 @@ const router = express.Router();
 router.route('/')
     .get(async (req, res ,next) =>{
         try {
-            const users = await User.FindAll();
+            const users = await User.findAll();
             res.json(users);
         } catch (err){
             console.errer(err);
             next(err);
         }
     })
-
     .post(async (req, res, next)=>{
         try {
             const user = await User.create({

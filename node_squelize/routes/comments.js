@@ -9,8 +9,8 @@ router.post('/', async (req, res, next)=>{
             commenter: req.body.id,
             comment: req.body.comment,
         });
-        console.log(commnet);
-        res.status(201).json(commnet);
+        console.log(comment);
+        res.status(201).json(comment);
         } catch (err){
             console.error(err);
             next(err);
@@ -18,7 +18,7 @@ router.post('/', async (req, res, next)=>{
 });
 
 router.route('/:id')
-    .patch(async (req, res, nex)=>{
+    .patch(async (req, res, next)=>{
         try{
             const result = await Comment.update({
                 comment: req.body.comment,
@@ -33,7 +33,7 @@ router.route('/:id')
     })
     .delete(async (req, res, next)=>{
         try{
-            const reuslt = await Comment.destroy({ where: {id: req.params.id}});
+            const result = await Comment.destroy({ where: {id: req.params.id}});
             res.json(result);
         } catch(err){
             console.error(err);
@@ -42,6 +42,6 @@ router.route('/:id')
     });
 
 
-    module.exports = router;
+module.exports = router;
 
     
