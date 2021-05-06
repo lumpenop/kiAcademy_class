@@ -7,6 +7,14 @@ const {User} = require('./models');
 const app = express();
 
 const router = require('./routes/index');
+const nunjucks = require('nunjucks');
+
+app.set('view engine', 'html');
+
+nunjucks.configure('views',{
+    express: app,
+
+})
 
 // sequelize.sync -> new Promise 객체로 반환
 sequelize.sync({force:false,})
