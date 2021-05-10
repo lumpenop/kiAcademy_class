@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script type="text/javascript">
+        const xhr = new XMLHttpRequest(); // 객체
+        
+        xhr.onreadystatechange = function(){ // 콜백으로 응답을 받는?
+            console.log(this.readyState);
+            if(this.readyState===4){
+                console.log(this.responseText);
+            }
+        }
+
+        xhr.open('get', 'http://localhost:3000'); // .open() => 요청 (request메서드(get/post), url주소)
+        xhr.send(); // .send() => 응답
+
+    </script> -->
+
+
+</head>
+<body>
+    <button id="btn" >데이터 가져오기</button>
+    <div id="root"></div>
+
+    <table id="list">
+        <tr>
+            <td>아이디</td>
+            <td>이름</td>
+        </tr>
+    </table>
+
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script type="text/javascript">
+    let userId = 1;
+    function getData(){
+        const root = document.querySelector('#root');
+        const table = document.querySelector('#list');
+        axios.get(`http://localhost:3000/user/info`)
+        .then((res)=>{
+            res.data.userList.forEach(ele => {
+                
+                const tr = document.createElement('tr');
+                const tdId = document.createElement('td');
+                const tdName = document.createElement('td');
+                tdId.innerHTML = ele.user_id;
+                tdName.innerHTML = ele.user_name;
+
+                tr.appendChild(tdId);
+                tr.appendChild(tdName);
+
+                table.appendChild(tr);
+                
+            });
+
+        }).catch((error)=>{
+            console.log(error);
+        })
+        userId++;
+    }
+    
+    const btn = document.querySelector('#btn');
+    btn.addEventListener('click', getData);
+
+    </script>
+</body>
+</html>

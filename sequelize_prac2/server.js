@@ -9,12 +9,17 @@ const app = express();
 const router = require('./routes/index');
 const nunjucks = require('nunjucks');
 
+const cors = require('cors');
+
+
 app.set('view engine', 'html');
 
 nunjucks.configure('views',{
     express: app,
 
 })
+
+app.use(cors());
 
 // sequelize.sync -> new Promise 객체로 반환
 sequelize.sync({force:false,})
