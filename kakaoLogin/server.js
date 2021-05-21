@@ -5,6 +5,8 @@ const axios = require('axios');
 const qs = require('qs');
 const session = require('express-session');
 
+console.log('test');
+
 app.use(session({
     secret:'adasda',
     resave:false,
